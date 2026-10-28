@@ -99,7 +99,7 @@ const Sidebar = ({ onClose }) => {
                 dark:text-white
               "
             >
-              Instant
+              AutoCare
             </h1>
 
             <p
@@ -109,7 +109,7 @@ const Sidebar = ({ onClose }) => {
                 dark:text-slate-400
               "
             >
-              Mechanic
+              360
             </p>
           </div>
         </div>

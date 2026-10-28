@@ -1,7 +1,5 @@
-import {
-  CalendarCheck,
-  Activity,
-} from "lucide-react";
+
+import { CalendarCheck, Activity } from "lucide-react";
 
 import DashboardSummary from "../components/overview/DashboardSummary";
 import StatsGrid from "../components/overview/StatsGrid";
@@ -10,7 +8,6 @@ import BookingsOverTimeChart from "../components/analytics/BookingsOverTimeChart
 import RevenueChart from "../components/analytics/RevenueChart";
 import StatusPieChart from "../components/analytics/StatusPieChart";
 import CategoryBarChart from "../components/analytics/CategoryBarChart";
-import WebSocketTest from "../components/webSocketTest/WebSocketTest";
 
 import ErrorState from "../components/ui/ErrorState";
 
@@ -18,61 +15,38 @@ import useDashboardData from "../hooks/useDashboardData";
 import useAnalytics from "../hooks/useAnalytics";
 
 const OverviewPage = () => {
-
-  // ==============================
   // Dashboard data
-  // ==============================
-
   const {
-  stats,
-  loading,
-  refreshing,
-  error: dashboardError,
-  lastUpdated,
-  refresh,
-} = useDashboardData();
+    stats,
+    loading,
+    refreshing,
+    error: dashboardError,
+    lastUpdated,
+    refresh,
+  } = useDashboardData();
 
-  // ==============================
   // Analytics data
-  // ==============================
-
   const {
-  loading: analyticsLoading,
-  error: analyticsError,
-  bookingsOverTime,
-  revenueOverTime,
-  statusDistribution,
-  categoryBreakdown,
-} = useAnalytics();
+    loading: analyticsLoading,
+    error: analyticsError,
+    bookingsOverTime,
+    revenueOverTime,
+    statusDistribution,
+    categoryBreakdown,
+  } = useAnalytics();
 
-  // ==============================
   // Chart data from backend
-  // ==============================
+  const bookingsData = bookingsOverTime || [];
+  const revenueData = revenueOverTime || [];
+  const statusData = statusDistribution || [];
+  const categoryData = categoryBreakdown || [];
 
-  const bookingsData =
-  bookingsOverTime || [];
-
-const revenueData =
-  revenueOverTime || [];
-
-  const statusData =
-  statusDistribution || [];
-
-const categoryData =
-  categoryBreakdown || [];
-
-  const error =
-    dashboardError || analyticsError;
-
-  const pageLoading =
-    loading || analyticsLoading;
+  const error = dashboardError || analyticsError;
+  const pageLoading = loading || analyticsLoading;
 
   return (
     <div>
-
-      <WebSocketTest />
       {/* Page Summary */}
-
       <DashboardSummary
         onRefresh={refresh}
         refreshing={refreshing}
@@ -80,7 +54,6 @@ const categoryData =
       />
 
       {/* Error */}
-
       {error && !pageLoading && (
         <div className="mb-6">
           <ErrorState
@@ -92,16 +65,10 @@ const categoryData =
       )}
 
       {/* Statistics */}
-
-      <StatsGrid
-        stats={stats}
-        loading={loading}
-      />
+      <StatsGrid stats={stats} loading={loading} />
 
       {/* Live Information */}
-
       <div className="mt-6">
-
         <div
           className="
             flex flex-col gap-3
@@ -118,9 +85,7 @@ const categoryData =
             sm:p-5
           "
         >
-
           <div className="flex items-center gap-3">
-
             <div
               className="
                 flex h-10 w-10
@@ -140,7 +105,6 @@ const categoryData =
             </div>
 
             <div>
-
               <p
                 className="
                   text-sm font-semibold
@@ -160,7 +124,6 @@ const categoryData =
               >
                 Dashboard data is being refreshed automatically.
               </p>
-
             </div>
           </div>
 
@@ -172,33 +135,18 @@ const categoryData =
               dark:text-emerald-400
             "
           >
-            <span
-              className="
-                h-2 w-2
-                rounded-full
-                bg-emerald-500
-              "
-            />
-
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
             System Live
           </div>
-
         </div>
-
       </div>
 
       {/* Main Analytics */}
-
       <section className="mt-6">
-
         <div className="mb-4 flex items-center gap-2">
-
           <CalendarCheck
             size={18}
-            className="
-              text-slate-500
-              dark:text-slate-400
-            "
+            className="text-slate-500 dark:text-slate-400"
           />
 
           <h2
@@ -210,38 +158,15 @@ const categoryData =
           >
             Performance Overview
           </h2>
-
         </div>
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            gap-5
-            xl:grid-cols-2
-          "
-        >
-
-          <BookingsOverTimeChart
-            data={bookingsData}
-          />
-
-          <RevenueChart
-            data={revenueData}
-          />
-
-          <StatusPieChart
-            data={statusData}
-          />
-
-          <CategoryBarChart
-            data={categoryData}
-          />
-
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+          <BookingsOverTimeChart data={bookingsData} />
+          <RevenueChart data={revenueData} />
+          <StatusPieChart data={statusData} />
+          <CategoryBarChart data={categoryData} />
         </div>
-
       </section>
-
     </div>
   );
 };
