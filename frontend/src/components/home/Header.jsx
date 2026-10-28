@@ -20,9 +20,9 @@ const Header = () => {
             </div>
 
             <div>
-              <h1 className="text-2xl font-bold text-white">Instant</h1>
+              <h1 className="text-2xl font-bold text-white">AutoCare</h1>
 
-              <p className="text-lg text-slate-400">Mechanic</p>
+              <p className="text-lg text-slate-400">360</p>
             </div>
           </Link>
 

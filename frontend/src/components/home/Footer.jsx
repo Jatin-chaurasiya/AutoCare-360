@@ -10,7 +10,7 @@ const Footer = () => {
 
           <div>
             <h3 className="text-lg font-bold text-white">
-              Instant Mechanic
+              AutoCare 360
             </h3>
 
             <p className="mt-2 max-w-md text-sm leading-6 text-slate-500">
@@ -46,7 +46,7 @@ const Footer = () => {
 
         <div className="mt-10 border-t border-slate-800 pt-6">
           <p className="text-sm text-slate-600">
-            © {new Date().getFullYear()} Instant Mechanic.
+            © {new Date().getFullYear()} AutoCare 360.
             All rights reserved.
           </p>
         </div>
